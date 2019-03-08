@@ -1,0 +1,7 @@
+# App
+spring:
+   application:
+      name: cadeolanche-web
+         
+server:
+   port: 8081

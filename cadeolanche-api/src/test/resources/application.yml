@@ -1,0 +1,7 @@
+# App
+spring:
+   application:
+      name: cadeolanche-api
+         
+server:
+   port: 8082
