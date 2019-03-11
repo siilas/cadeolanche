@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.github.siilas.cadeolanche.vo.CardapioVO;
 
 import feign.hystrix.FallbackFactory;
+import lombok.extern.slf4j.Slf4j;
 
-@FeignClient(url = "${cadeolanche.api.url}", path = "/cardapio", fallback = CardapioFallback.class)
+@FeignClient(name = "cardapio", url = "${cadeolanche.api.url}", path = "/cardapio", fallbackFactory = CardapioFallback.class)
 public interface CardapioClient {
 
 	@GetMapping
@@ -16,12 +17,14 @@ public interface CardapioClient {
 
 }
 
+@Slf4j
 @Component
 class CardapioFallback implements FallbackFactory<CardapioClient> {
 
 	@Override
 	public CardapioClient create(Throwable cause) {
-
+		log.error("Erro ao buscar cardápio", cause);
+		
 		return new CardapioClient() {
 
 			@Override

@@ -8,8 +8,9 @@ import com.github.siilas.cadeolanche.vo.PedidoVO;
 import com.github.siilas.cadeolanche.vo.ReciboVO;
 
 import feign.hystrix.FallbackFactory;
+import lombok.extern.slf4j.Slf4j;
 
-@FeignClient(url = "${cadeolanche.api.url}", path = "/pedido", fallback = PedidoFallback.class)
+@FeignClient(name = "pedido", url = "${cadeolanche.api.url}", path = "/pedido", fallbackFactory = PedidoFallback.class)
 public interface PedidoClient {
 
 	@PostMapping
@@ -17,18 +18,20 @@ public interface PedidoClient {
 
 }
 
+@Slf4j
 @Component
 class PedidoFallback implements FallbackFactory<PedidoClient> {
 
 	@Override
 	public PedidoClient create(Throwable cause) {
-
+		log.error("Erro ao realizar pedido", cause);
+		
 		return new PedidoClient() {
 
 			@Override
 			public ReciboVO enviarPedido(PedidoVO pedido) {
 				ReciboVO recibo = new ReciboVO();
-				recibo.error("Seu pedido não pode ser concluído, por favor entre em contato conosco para finalizá-lo.");
+				recibo.error("Seu pedido não pôde ser concluído, por favor entre em contato conosco para finalizá-lo.");
 				return recibo;
 			}
 

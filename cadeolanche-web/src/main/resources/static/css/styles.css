@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+body {
+	background-color: #fd6a02;
+	color: white;
+}
+
+button {
+	background-color: #fff628 !important;
+	color: black !important;
+}
+
+table {
+	color: white !important;
+}
+
+#table-title {
+	color: white;
+	text-align: center;
+	caption-side: top;
+	font-weight: bold;
+}
+
+.footer a {
+	color: white;
+	font-weight: bold;
+}

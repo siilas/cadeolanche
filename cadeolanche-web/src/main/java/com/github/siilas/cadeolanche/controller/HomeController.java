@@ -6,15 +6,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
-	
+
 	@RequestMapping("/index")
 	public ModelAndView index() {
 		return new ModelAndView("index");
-	}
-	
-	@RequestMapping("/docs")
-	public ModelAndView docs() {
-		return new ModelAndView("redirect:/swagger-ui.html");
 	}
 
 }
