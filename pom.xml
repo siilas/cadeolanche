@@ -8,7 +8,7 @@
 	<artifactId>cadeolanche</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Cadê o Lanche?</name>
+	<name>cadeolanche</name>
 	<description>Projeto de cardápio e pedido de lanches</description>
 
 	<properties>
