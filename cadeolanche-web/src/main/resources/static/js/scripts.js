@@ -1,0 +1,3 @@
+function irParaHome() {
+	location.href = "/";
+}

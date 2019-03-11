@@ -1,5 +1,6 @@
 package com.github.siilas.cadeolanche.vo;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class CardapioVO extends FailableVO {
 
 	private List<LancheVO> lanches;
 	private List<IngredienteVO> ingredientes;
+	private List<PromocaoVO> promocoes;
 
 	public List<LancheVO> getLanches() {
 		if (lanches == null) {
@@ -30,5 +32,12 @@ public class CardapioVO extends FailableVO {
 		}
 		return ingredientes;
 	}
+	
+	public List<PromocaoVO> getPromocoes() {
+        if (promocoes == null) {
+            promocoes = new ArrayList<>();
+        }
+        return promocoes;
+    }
 
 }

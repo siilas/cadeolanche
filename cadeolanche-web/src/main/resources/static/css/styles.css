@@ -25,3 +25,15 @@ table {
 	color: white;
 	font-weight: bold;
 }
+
+.logo {
+	cursor: pointer;
+}
+
+.card {
+	background-color: #934e00 !important;
+}
+
+.list-group-item {
+	background-color: #db6a00 !important;
+} 

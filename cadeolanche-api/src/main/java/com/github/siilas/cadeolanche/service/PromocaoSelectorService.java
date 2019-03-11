@@ -26,8 +26,9 @@ public class PromocaoSelectorService {
 				return promocaoMuitaCarneService;
 			case MUITO_QUEIJO:
 				return promocaoMuitoQueijoService;
+			default:
+			    throw new ServiceException("Promoção não encontrada");
 		}
-		throw new ServiceException("Promoção não encontrada");
 	}
 	
 }
