@@ -92,6 +92,10 @@ http://localhost:8082 (Backend)
 
 # Arquitetura e design do projeto
 
+A proposta do projeto é ser simples e de fácil uso, para que o usuário possa fazer o pedido de forma amigável. Para isso foram utilizados o Thymeleaf (engine de templates) e o Bootstrap (componentes de interface e front-end), ambos pela facilidade de uso.
+
+Para o back-end foi escolhido o Spring Boot, pela maturidade do framework e todas as ferramentas, facilidades e integração com outros frameworks e tecnologias que o mesmo oferece. A API foi desenvolvida de forma reativa e também utilizando o Hystrix (circuit breaker) para que seja tolerante a falha. E o BDD (Cucumber) foi utilizado na parte de testes para validação das regras de negócio.
+
 # URLs do projeto
 
 Segue lista com todas as URLs do projeto:
