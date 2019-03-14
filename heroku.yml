@@ -1,0 +1,4 @@
+build:
+  docker:
+    web: cadeolanche-web/Dockerfile
+    api: cadeolanche-api/Dockerfile
