@@ -2,7 +2,7 @@ FROM adoptopenjdk/openjdk11:latest
 
 MAINTAINER Silas Maciel Ferreira
 
-RUN ./mvnw clean install
+RUN ../mvnw clean install
 
 VOLUME /tmp
 
