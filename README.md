@@ -92,7 +92,25 @@ http://localhost:8082 (Backend)
 
 # Arquitetura e design do projeto
 
-# Acesso e exemplos de uso
+# URLs do projeto
+
+Segue lista com todas as URLs do projeto:
+
+## Frontend
+
+| URL | Descrição |
+| --- | --------- |
+| / | Página inicial do projeto |
+| /pedido/novo | Novos pedidos |
+| /pedido/salvar | Salva o pedido e exibe o recibo |
+
+## Backend
+
+| URL | Descrição |
+| --- | --------- |
+| /cardapios | Retorna o cardápio |
+| /pedidos | Salva o pedido e retorna o recibo |
+| /swagger-ui.html | Documentação dos serviços |
 
 # Melhorias
 
