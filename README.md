@@ -96,6 +96,8 @@ A proposta do projeto é ser simples e de fácil uso, para que o usuário possa 
 
 Para o back-end foi escolhido o Spring Boot, pela maturidade do framework e todas as ferramentas, facilidades e integração com outros frameworks e tecnologias que o mesmo oferece. A API foi desenvolvida de forma reativa e também utilizando o Hystrix (circuit breaker) para que seja tolerante a falha. E o BDD (Cucumber) foi utilizado na parte de testes para validação das regras de negócio.
 
+A programação reativa na API foi escolhida pensando no crescimento da mesma, pois caso a consumo seja grande, a programação reativa vai nos ajudar nisso com threads não blocantes e fluxos assíncronos.
+
 # URLs do projeto
 
 Segue lista com todas as URLs do projeto:
