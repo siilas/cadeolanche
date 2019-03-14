@@ -90,7 +90,7 @@ http://localhost:8081 (Frontend)
 http://localhost:8082 (Backend)
 ```
 
-# Arquitetura
+# Arquitetura e design do projeto
 
 # Acesso e exemplos de uso
 
@@ -101,3 +101,5 @@ http://localhost:8082 (Backend)
 - Utilizar banco de dados para guardar os pedidos
 - Utilizar fila para os pedidos
 - Melhorar o script de verificação e criar uma versão para Windows
+
+**Até mais e vida longa e próspera! :)**
