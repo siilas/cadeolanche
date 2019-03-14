@@ -1,5 +1,7 @@
 package com.github.siilas.cadeolanche.model;
 
+import java.math.BigDecimal;
+
 import com.github.siilas.cadeolanche.enums.Ingredientes;
 
 import lombok.AllArgsConstructor;
@@ -13,8 +15,8 @@ public class Ingrediente {
 
 	private Integer id;
 	private String nome;
-	private Double valor;
-	
+	private BigDecimal valor;
+
 	public static Ingrediente from(Ingredientes ingrediente) {
 		Ingrediente response = new Ingrediente();
 		response.setId(ingrediente.getId());

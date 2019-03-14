@@ -1,34 +1,36 @@
 package com.github.siilas.cadeolanche.service;
 
+import java.math.BigDecimal;
+
 import org.springframework.stereotype.Service;
 
 import com.github.siilas.cadeolanche.enums.Ingredientes;
 import com.github.siilas.cadeolanche.enums.Promocoes;
 import com.github.siilas.cadeolanche.model.Ingrediente;
-import com.github.siilas.cadeolanche.model.PedidoRequest;
 import com.github.siilas.cadeolanche.model.ReciboResponse;
+import com.github.siilas.cadeolanche.utils.MathUtils;
 
 @Service
 public class PromocaoMuitaCarneService implements PromocaoService {
 
 	@Override
-	public void verificarEAplicar(PedidoRequest pedido, ReciboResponse recibo) {
-		int quantidadeCarne = getQuantidadeCarne(pedido);
+	public void verificarEAplicar(ReciboResponse recibo) {
+		int quantidadeCarne = getQuantidadeCarne(recibo);
 		if (quantidadeCarne >= 3) {
-			Double desconto = getDesconto(quantidadeCarne);
-			recibo.subtrairValor(desconto);
+			BigDecimal desconto = getDesconto(quantidadeCarne, Ingredientes.HAMBURGUER.getValor());
+			recibo.somarDesconto(desconto);
 			recibo.adicionarPromocao(Promocoes.MUITA_CARNE);
 		}
 	}
 	
-	int getQuantidadeCarne(PedidoRequest pedido) {
+	Integer getQuantidadeCarne(ReciboResponse recibo) {
 		int quantidadeCarne = 0;
-		for (Ingrediente ingrediente : pedido.getLanche().getIngredientes()) {
+		for (Ingrediente ingrediente : recibo.getLanche().getIngredientes()) {
 			if (Ingredientes.HAMBURGUER.getId().equals(ingrediente.getId())) {
 				quantidadeCarne += 1;
 			}
 		}
-		for (Ingrediente ingrediente : pedido.getAdicionais()) {
+		for (Ingrediente ingrediente : recibo.getAdicionais()) {
 			if (Ingredientes.HAMBURGUER.getId().equals(ingrediente.getId())) {
 				quantidadeCarne += 1;
 			}
@@ -36,9 +38,9 @@ public class PromocaoMuitaCarneService implements PromocaoService {
 		return quantidadeCarne;
 	}
 
-	Double getDesconto(int quantidadeCarne) {
+	BigDecimal getDesconto(int quantidadeCarne, BigDecimal valor) {
 		double resultado = quantidadeCarne / 3;
-		return Double.valueOf(resultado).intValue() * Ingredientes.HAMBURGUER.getValor();
+		return MathUtils.multiply(resultado, valor);
 	}
 
 }

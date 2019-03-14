@@ -37,3 +37,7 @@ table {
 .list-group-item {
 	background-color: #db6a00 !important;
 } 
+
+.is-invalid {
+	color: #dc3545 !important;
+}

@@ -1,7 +1,9 @@
 package com.github.siilas.cadeolanche.vo;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,12 +25,17 @@ public class LancheVO {
 		return ingredientes;
 	}
 	
-	public Double getValor() {
-		Double valor = 0.0;
+	
+	public BigDecimal getValor() {
+		BigDecimal valor = BigDecimal.ZERO;
 		for (IngredienteVO ingrediente : getIngredientes()) {
-			valor = valor + ingrediente.getValor();
+			valor = valor.add(ingrediente.getValor());
 		}
 		return valor;
+	}
+	
+	public String getNomesIngredientes() {
+		return ingredientes.stream().map(IngredienteVO::getNome).collect(Collectors.joining(", "));
 	}
 	
 }

@@ -9,7 +9,6 @@
 		<link rel="stylesheet" href="/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="/css/styles.css" />
 		
-		<script type="text/javascript" src="/js/axios.min.js"></script>
 		<script type="text/javascript" src="/js/scripts.js"></script>
 		
 		<title>Cadê o Lanche?</title>
@@ -29,12 +28,67 @@
 					<div class="alert alert-danger" role="alert">
 						[[${recibo.mensagem}]]
 					</div>
-					<div class="form-group">
+					<div class="form-group text-center">
 						<a role="button" href="/pedido/novo" class="btn btn-warning font-weight-bold">Tentar novamente</a>
 					</div>
 				</div>
 				<div class="mt-5 mb-2" th:unless="${recibo.error}">
-					
+					<h2 class="mt-4 font-weight-bold text-center">Resumo do pedido:</h2>
+					<div class="form-group text-center">
+						<h3>
+							[[${recibo.lanche.nome}]]: [[${recibo.lanche.nomesIngredientes}]] (R$ [[${recibo.lanche.valor}]])
+						</h3>
+					</div>
+					<div class="form-group" th:unless="${recibo.adicionais.empty}">
+ 						<table class="table mb-5 text-center">
+							<caption id="table-title">Adicionais:</caption>
+							<thead>
+								<tr>
+									<th>Ingrediente</th>
+									<th>Preço</th>
+								</tr>
+							</thead>
+							<tbody id="ingredientes">
+								<th:block th:each="adicional : ${recibo.adicionais}">
+									<tr>
+										<td>[[${adicional.nome}]]</td>
+										<td>R$ [[${adicional.valor}]]</td>
+									</tr>
+								</th:block>
+							</tbody>
+						</table>
+ 					</div>
+					<div class="form-group" th:unless="${recibo.promocoes.empty}">
+ 						<div class="card">
+ 							<div class="card-header text-center font-weight-bold">Promoções no seu pedido:</div>
+	 						<ul class="list-group list-group-flush">
+		 						<th:block th:each="promocao : ${recibo.promocoes}">
+		 							<li class="list-group-item">
+		 								<span class="font-weight-bold">[[${promocao.nome}]]:</span> [[${promocao.descricao}]]
+	 								</li>
+		 						</th:block>
+	 						</ul>
+ 						</div>
+ 					</div>
+ 					<div class="form-group">
+ 						<div class="card">
+ 							<div class="card-header text-center font-weight-bold">Valores:</div>
+	 						<ul class="list-group list-group-flush">
+	 							<li class="list-group-item">
+	 								<span class="font-weight-bold">Preço:</span> R$ [[${recibo.valor}]]
+ 								</li>
+ 								<li class="list-group-item">
+	 								<span class="font-weight-bold">Desconto:</span> R$ [[${recibo.desconto}]]
+ 								</li>
+ 								<li class="list-group-item">
+	 								<span class="font-weight-bold">Total:</span> R$ [[${recibo.valorFinal}]]
+ 								</li>
+	 						</ul>
+ 						</div>
+ 					</div>
+ 					<div class="form-group text-center">
+						<a role="button" href="/pedido/novo" class="btn btn-warning font-weight-bold">Fazer outro pedido</a>
+					</div>
 				</div>
 			</div>
 			<footer class="footer mt-auto py-3">

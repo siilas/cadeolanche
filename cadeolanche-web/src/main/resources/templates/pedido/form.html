@@ -9,7 +9,6 @@
 		<link rel="stylesheet" href="/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="/css/styles.css" />
 		
-		<script type="text/javascript" src="/js/axios.min.js"></script>
 		<script type="text/javascript" src="/js/scripts.js"></script>
 		
 		<title>Cadê o Lanche?</title>
@@ -29,27 +28,55 @@
 					<div class="alert alert-danger" role="alert">
 						[[${cardapio.mensagem}]]
 					</div>
-					<div class="form-group">
+					<div class="form-group text-center">
 						<a role="button" href="/pedido/novo" class="btn btn-warning font-weight-bold">Tentar novamente</a>
 					</div>
 				</div>
 				<div class="mt-5 mb-2" th:unless="${cardapio.error}">
-					<form method="post" action="/pedido/salvar">
+					<h2 class="mt-4 font-weight-bold text-center">Faça seu pedido:</h2>
+					<form method="post" id="form-pedido" action="/pedido/salvar">
 						<div class="form-group">
-							<select class="custom-select text-center" id="lanche" name="lanche">
+							<select class="custom-select text-center" id="lanche" name="lanche.id">
 								<option value="" selected>Escolha o lanche...</option>
 								<th:block th:each="lanche : ${cardapio.lanches}">
-									<option th:value="${lanche.id}" th:text="${lanche.nome}"></option>
+									<option th:value="${lanche.id}">
+										[[${lanche.nome}]]: [[${lanche.nomesIngredientes}]] (R$ [[${lanche.valor}]])
+									</option>
 								</th:block>
 							</select>
 	 					</div>
-	 					<div class="form-group">
-							<select class="custom-select text-center" id="ingredientes" name="ingredientes">
+	 					<div class="form-group input-group">
+							<select class="custom-select text-center" id="ingrediente">
 							   <option value="" selected>Adicione ingredientes...</option>
 							   <th:block th:each="ingrediente : ${cardapio.ingredientes}">
-									<option th:value="${ingrediente.id}" th:text="${ingrediente.nome}"></option>
+									<option th:value="${ingrediente.id}">
+										[[${ingrediente.nome}]] (R$ [[${ingrediente.valor}]])
+									</option>
 								</th:block>
 		 					</select>
+		 					<div class="input-group-append">
+    							<button class="btn btn-warning font-weight-bold" type="button" onclick="addIngrediente()">
+    								Adicionar
+    							</button>
+  							</div>
+	 					</div>
+	 					<div class="form-group">
+	 						<table class="table mb-5 text-center">
+								<caption id="table-title">Ingredientes adicionados</caption>
+								<thead>
+									<tr>
+										<th>Ingrediente</th>
+										<th>#</th>
+									</tr>
+								</thead>
+								<tbody id="ingredientes">
+								</tbody>
+							</table>
+	 					</div>
+	 					<div class="form-group text-center">
+	 						<button type="button" onclick="enviarPedido()" class="btn btn-warning font-weight-bold">
+	 							Enviar
+	 						</button>
 	 					</div>
 	 					<div class="form-group">
 	 						<div class="card">

@@ -10,7 +10,7 @@ import com.github.siilas.cadeolanche.vo.ReciboVO;
 import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;
 
-@FeignClient(name = "pedido", url = "${cadeolanche.api.url}", path = "/pedido", fallbackFactory = PedidoFallback.class)
+@FeignClient(name = "pedido", url = "${cadeolanche.api.url}", path = "/pedidos", fallbackFactory = PedidoFallback.class)
 public interface PedidoClient {
 
 	@PostMapping

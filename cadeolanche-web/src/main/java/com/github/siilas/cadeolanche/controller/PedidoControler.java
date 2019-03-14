@@ -35,7 +35,7 @@ public class PedidoControler {
 	public ModelAndView salvar(@Valid PedidoVO pedido) {
 		ModelAndView modelAndView = new ModelAndView("pedido/info");
 		modelAndView.addObject("pedido", pedido);
-		modelAndView.addObject("info", pedidoClient.enviarPedido(pedido));
+		modelAndView.addObject("recibo", pedidoClient.enviarPedido(pedido));
 		return modelAndView;
 	}
 

@@ -1,5 +1,6 @@
 package com.github.siilas.cadeolanche.vo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -13,5 +14,12 @@ public class PedidoVO {
 
 	private LancheVO lanche;
 	private List<IngredienteVO> adicionais;
+
+	public List<IngredienteVO> getAdicionais() {
+		if (adicionais == null) {
+			adicionais = new ArrayList<>();
+		}
+		return adicionais;
+	}
 
 }

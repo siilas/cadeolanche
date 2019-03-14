@@ -1,9 +1,15 @@
 package com.github.siilas.cadeolanche.service;
 
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.siilas.cadeolanche.enums.Ingredientes;
+import com.github.siilas.cadeolanche.enums.Lanches;
 import com.github.siilas.cadeolanche.enums.Promocoes;
+import com.github.siilas.cadeolanche.model.Ingrediente;
+import com.github.siilas.cadeolanche.model.Lanche;
 import com.github.siilas.cadeolanche.model.PedidoRequest;
 import com.github.siilas.cadeolanche.model.ReciboResponse;
 
@@ -17,16 +23,26 @@ public class PedidoService {
 	
 	public Mono<ReciboResponse> fazerPedido(PedidoRequest pedido) {
 		return Mono.just(new ReciboResponse())
-			.map(r -> {
-				r.somarValor(pedido.getLanche().getValor());
-				pedido.getAdicionais().forEach(i -> r.somarValor(i.getValor()));
-				return r;
+			.map(recibo -> {
+				Lanches lanche = Lanches.getFromId(pedido.getLanche().getId());
+				recibo.setLanche(Lanche.from(lanche));
+				pedido.getAdicionais().removeIf(Objects::isNull);
+				pedido.getAdicionais().forEach(i -> {
+					Ingredientes ingrediente = Ingredientes.getFromId(i.getId());
+					recibo.getAdicionais().add(Ingrediente.from(ingrediente));
+				});
+				return recibo;
 			})
-			.map(r -> {
-				promocaoService.get(Promocoes.MUITA_CARNE).verificarEAplicar(pedido, r);
-				promocaoService.get(Promocoes.MUITO_QUEIJO).verificarEAplicar(pedido, r);
-				promocaoService.get(Promocoes.LIGHT).verificarEAplicar(pedido, r);
-				return r;
+			.map(recibo -> {
+				recibo.somarValor(recibo.getLanche().getValor());
+				recibo.getAdicionais().forEach(i -> recibo.somarValor(i.getValor()));
+				return recibo;
+			})
+			.map(recibo -> {
+				promocaoService.get(Promocoes.MUITA_CARNE).verificarEAplicar(recibo);
+				promocaoService.get(Promocoes.MUITO_QUEIJO).verificarEAplicar(recibo);
+				promocaoService.get(Promocoes.LIGHT).verificarEAplicar(recibo);
+				return recibo;
 			});
 	}
 

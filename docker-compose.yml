@@ -1,0 +1,25 @@
+version: '2.2'
+services:
+  cadeolanche-api:
+    build:
+      context: ./cadeolanche-api
+      dockerfile: Dockerfile
+    ports:
+      - 8082:8082
+    networks:
+      - network-api
+      
+  cadeolanche-web:
+    build:
+      context: ./cadeolanche-web
+      dockerfile: Dockerfile
+    ports:
+      - 8081:8081
+    networks:
+      - network-api
+    depends_on:
+      - "cadeolanche-api"
+
+networks:
+  network-api:
+    driver: bridge

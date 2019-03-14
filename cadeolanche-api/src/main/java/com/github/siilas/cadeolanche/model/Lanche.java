@@ -1,9 +1,11 @@
 package com.github.siilas.cadeolanche.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.github.siilas.cadeolanche.enums.Lanches;
+import com.github.siilas.cadeolanche.utils.MathUtils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,15 +26,15 @@ public class Lanche {
 		}
 		return ingredientes;
 	}
-	
-	public Double getValor() {
-		Double valor = 0.0;
+
+	public BigDecimal getValor() {
+		BigDecimal valor = MathUtils.bigDecimal(0.00);
 		for (Ingrediente ingrediente : getIngredientes()) {
-			valor = valor + ingrediente.getValor();
+			valor = valor.add(ingrediente.getValor());
 		}
 		return valor;
 	}
-	
+
 	public static Lanche from(Lanches lanche) {
 		Lanche response = new Lanche();
 		response.setId(lanche.getId());

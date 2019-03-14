@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 
 @Api
 @RestController
-@RequestMapping("/cardapio")
+@RequestMapping("/cardapios")
 public class CardapioResource {
 
 	@Autowired

@@ -13,7 +13,7 @@ import lombok.Getter;
 public enum Lanches {
 
 	X_BACON(1, "X-Bacon", List.of(BACON, HAMBURGUER, QUEIJO)),
-	X_BURGUER(2, "X-Burger", List.of(HAMBURGUER, QUEIJO)),
+	X_BURGER(2, "X-Burger", List.of(HAMBURGUER, QUEIJO)),
 	X_EGG(3, "X-Egg", List.of(OVO, HAMBURGUER, QUEIJO)),
 	X_EGG_BACON(4, "X-Egg Bacon", List.of(OVO, BACON, HAMBURGUER, QUEIJO));
 

@@ -9,7 +9,7 @@ import com.github.siilas.cadeolanche.vo.CardapioVO;
 import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;
 
-@FeignClient(name = "cardapio", url = "${cadeolanche.api.url}", path = "/cardapio", fallbackFactory = CardapioFallback.class)
+@FeignClient(name = "cardapio", url = "${cadeolanche.api.url}", path = "/cardapios", fallbackFactory = CardapioFallback.class)
 public interface CardapioClient {
 
 	@GetMapping
