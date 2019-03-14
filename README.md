@@ -16,7 +16,6 @@ O projeto foi feito utilizando as seguintes tecnologias e frameworks:
 - [Reactor](https://projectreactor.io)
 - [Thymeleaf](https://www.thymeleaf.org)
 - [Bootstrap](https://getbootstrap.com)
-- [JMeter](https://jmeter.apache.org)
 
 E alguns dos padrões de projeto e arquiteturais utilizados:
 
