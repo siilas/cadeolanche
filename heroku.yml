@@ -2,3 +2,6 @@ build:
   docker:
     web: cadeolanche-web/Dockerfile
     api: cadeolanche-api/Dockerfile
+release:
+  command:
+    - ./mvnw clean install
