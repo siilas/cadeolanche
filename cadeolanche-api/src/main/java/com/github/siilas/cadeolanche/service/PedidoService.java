@@ -26,11 +26,11 @@ public class PedidoService {
 			.map(recibo -> {
 				Lanches lanche = Lanches.getFromId(pedido.getLanche().getId());
 				recibo.setLanche(Lanche.from(lanche));
-				pedido.getAdicionais().removeIf(Objects::isNull);
 				pedido.getAdicionais().forEach(i -> {
 					Ingredientes ingrediente = Ingredientes.getFromId(i.getId());
 					recibo.getAdicionais().add(Ingrediente.from(ingrediente));
 				});
+				recibo.getAdicionais().removeIf(Objects::isNull);
 				return recibo;
 			})
 			.map(recibo -> {

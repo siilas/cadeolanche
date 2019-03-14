@@ -18,6 +18,9 @@ public class Ingrediente {
 	private BigDecimal valor;
 
 	public static Ingrediente from(Ingredientes ingrediente) {
+		if (ingrediente == null) {
+			return null;
+		}
 		Ingrediente response = new Ingrediente();
 		response.setId(ingrediente.getId());
 		response.setNome(ingrediente.getNome());
